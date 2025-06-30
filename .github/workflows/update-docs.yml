@@ -34,7 +34,9 @@ jobs:
         run: npm install
 
       - name: Install tools
-        run: npx doc-tools install-test-dependencies
+        run: |
+          npx doc-tools install-test-dependencies
+          rpk connect install
 
       - name: Generate RPCN Connector docs
         id: generate
