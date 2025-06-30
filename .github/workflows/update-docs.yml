@@ -46,36 +46,13 @@ jobs:
             --overrides $DOCS_OVERRIDES \
             --draft-missing > full_output.txt
 
-          # Extract full delta report block (stopping at the first non-bullet or EOF)
-          awk '/📋 RPCN Connector Delta Report/{flag=1; next} flag {if (/^📊|^📄|^✅|^⏳|^⏰|^⛔|^❌|^💥/) exit; print}' full_output.txt > raw_delta.txt
-          # Build Markdown report
-          {
-            echo "📋 RPCN Connector Delta Report"
-            echo ""
-          
-          if grep -q 'components:' raw_delta.txt; then
-            echo "<details>"
-            echo "<summary>Newly added components:</summary>"
-            grep -E '^\s*• ' raw_delta.txt | grep 'components:' -A 1000 | grep -v 'fields:' | grep -E '^\s*• ' | sed -E 's/^\s*• /- /'
-            echo "</details>"
-            echo ""
-          fi
-
-          
-          if grep -q 'fields:' raw_delta.txt; then
-            echo "<details>"
-            echo "<summary>Newly added fields:</summary>"
-            grep -E '^\s*• ' raw_delta.txt | grep 'fields:' -A 1000 | sed -E 's/^\s*• /- /'
-            echo "</details>"
-          fi
-
-          } > delta_report.md
-
-
-          # Set multiline output safely
           {
             echo "delta_report<<EOF"
-            cat delta_report.md
+            echo "<details><summary>RPCN Connector Generation Output</summary>"
+            echo ""
+            cat full_output.txt
+            echo ""
+            echo "</details>"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
