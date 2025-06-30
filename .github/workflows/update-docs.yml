@@ -14,7 +14,7 @@ jobs:
       cancel-in-progress: true
 
     env:
-      NODE_VERSION: '16'
+      NODE_VERSION: '18'
       DOCS_OVERRIDES: docs-data/overrides.json
 
     steps:
@@ -31,7 +31,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Generate RPCN Connector docs
         id: generate
