@@ -47,12 +47,12 @@ jobs:
             --draft-missing > full_output.txt
 
           # Extract full delta report block (stopping at the first non-bullet or EOF)
-          awk '/📋 RPCN Connector Delta Report/{flag=1; next} flag {if (/^➤/ || /^•/) print; else exit}' full_output.txt > raw_delta.txt
-
+          awk '/📋 RPCN Connector Delta Report/{flag=1; next} flag {if (/^📊|^📄|^✅|^⏳|^⏰|^⛔|^❌|^💥/) exit; print}' full_output.txt > raw_delta.txt
+          # Build Markdown report
           {
             echo "📋 RPCN Connector Delta Report"
             echo ""
-
+          
             if grep -q 'components:' raw_delta.txt; then
               echo "<details>"
               echo "<summary>Newly added components:</summary>"
@@ -60,7 +60,7 @@ jobs:
               echo "</details>"
               echo ""
             fi
-
+          
             if grep -q 'fields:' raw_delta.txt; then
               echo "<details>"
               echo "<summary>Newly added fields:</summary>"
@@ -69,12 +69,15 @@ jobs:
             fi
           } > delta_report.md
 
+
           # Set multiline output safely
           {
             echo "delta_report<<EOF"
             cat delta_report.md
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
+
+          rm -f full_output.txt raw_delta.txt delta_report.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
