@@ -53,20 +53,22 @@ jobs:
             echo "📋 RPCN Connector Delta Report"
             echo ""
           
-            if grep -q 'components:' raw_delta.txt; then
-              echo "<details>"
-              echo "<summary>Newly added components:</summary>"
-              grep '• ' raw_delta.txt | grep 'components:' -A 1000 | grep -v 'fields:' | grep '• ' | sed 's/• /- /'
-              echo "</details>"
-              echo ""
-            fi
+          if grep -q 'components:' raw_delta.txt; then
+            echo "<details>"
+            echo "<summary>Newly added components:</summary>"
+            grep -E '^\s*• ' raw_delta.txt | grep 'components:' -A 1000 | grep -v 'fields:' | grep -E '^\s*• ' | sed -E 's/^\s*• /- /'
+            echo "</details>"
+            echo ""
+          fi
+
           
-            if grep -q 'fields:' raw_delta.txt; then
-              echo "<details>"
-              echo "<summary>Newly added fields:</summary>"
-              grep '• ' raw_delta.txt | grep 'fields:' -A 1000 | sed 's/• /- /'
-              echo "</details>"
-            fi
+          if grep -q 'fields:' raw_delta.txt; then
+            echo "<details>"
+            echo "<summary>Newly added fields:</summary>"
+            grep -E '^\s*• ' raw_delta.txt | grep 'fields:' -A 1000 | sed -E 's/^\s*• /- /'
+            echo "</details>"
+          fi
+
           } > delta_report.md
 
 
