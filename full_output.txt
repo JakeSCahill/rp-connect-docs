@@ -1,0 +1,59 @@
+✅ Fetched and saved: /home/runner/work/rp-connect-docs/rp-connect-docs/docs-data/connect-4.59.0.json
+⏳ Generating connector partials...
+⏳ Drafting missing connectors…
+No GitHub token found (VBOT_GITHUB_API_TOKEN).
+Saved: /tmp/redpanda-connect-csv/info.csv
+📥 Loaded CSV from GitHub into: /tmp/redpanda-connect-csv/info.csv
+✅ Parsed 302 connector records.
+⏳ Docs missing for 1 connectors:
+   • input/pg_stream
+
+Skipping draft for deprecated component: inputs/pg_stream
+
+📋 RPCN Connector Delta Report
+
+➤ No newly added components.
+
+➤ Newly added fields:
+   • caches:redpanda → allow_auto_topic_creation
+   • inputs:sftp → connection_timeout
+   • inputs:sftp → max_sftp_sessions
+   • outputs:gcp_pubsub → validate_topic
+   • outputs:sftp → connection_timeout
+
+✅ Updated Antora version: 4.59.0
+📊 Generation Report:
+   • Partial files: 340
+  • Fields partials: 261 total
+    – modules/components/partials/fields/buffers/memory.adoc
+    – modules/components/partials/fields/buffers/sqlite.adoc
+    – modules/components/partials/fields/buffers/system_window.adoc
+    – modules/components/partials/fields/caches/aws_dynamodb.adoc
+    – modules/components/partials/fields/caches/aws_s3.adoc
+    – modules/components/partials/fields/caches/couchbase.adoc
+    – modules/components/partials/fields/caches/file.adoc
+    – modules/components/partials/fields/caches/gcp_cloud_storage.adoc
+    – modules/components/partials/fields/caches/lru.adoc
+    – modules/components/partials/fields/caches/memcached.adoc
+    … plus 251 more
+
+  • Examples partials: 79 total
+    – modules/components/partials/examples/buffers/sqlite.adoc
+    – modules/components/partials/examples/buffers/system_window.adoc
+    – modules/components/partials/examples/caches/multilevel.adoc
+    – modules/components/partials/examples/inputs/azure_cosmosdb.adoc
+    – modules/components/partials/examples/inputs/cassandra.adoc
+    – modules/components/partials/examples/inputs/file.adoc
+    – modules/components/partials/examples/inputs/gcp_bigquery_select.adoc
+    – modules/components/partials/examples/inputs/generate.adoc
+    – modules/components/partials/examples/inputs/http_client.adoc
+    – modules/components/partials/examples/inputs/http_server.adoc
+    … plus 69 more
+
+   • Full drafts:   0
+  • Draft files: 0 total
+
+
+📄 Summary:
+   • Run time: 2025-06-30T13:56:20.725Z
+   • Version used: 4.59.0
